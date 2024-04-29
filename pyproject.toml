@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "strava_connector"
-version = "0.2.0"
+version = "0.2.1"
 description = "Simple Strava client written in Python"
 authors = ["Thomas Camminady <0milieux_member@icloud.com>"]
 readme = "README.md"
