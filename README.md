@@ -1,12 +1,8 @@
-# WIP
-
 # Strava Connector
 
 Simple Strava client written in Python.
 
-## Workflow
-
-Install via
+## Installation
 
 ```
 pip install strava_connector
@@ -18,7 +14,22 @@ or
 poetry add strava_connector
 ```
 
-Now run the following steps.
+## How to use
+
+
+Here's an example that shows how to retrieve a user's recent activities.
+This is a wrapper around [Strava's api](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
+
+```python
+from strava_connector.connector import Connector
+connector = Connector(".tokens_client.json",".tokens_strava.json")
+res = connector.get_logged_in_athlete_activities(page=1, per_page=3)
+```
+For this to work, you need to follow the workflow below.
+
+## Authentication workflow
+
+Run the following steps.
 
 ### Step 1
 
@@ -39,7 +50,7 @@ initial_auth(client_id, client_secret)
 
 This will prompt you to click on a link and the dialogue will look something like this:
 
-```shell
+```txt
 
 Click on the following authentication url.
 You will be redirected and have to click 'Authorize'.
@@ -56,24 +67,12 @@ http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
     'expires_in': 20187,
     'refresh_token': '7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb',
     'access_token': '6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxa',
-    'athlete': {
-        // redacted
-    }
+    'athlete': { // redacted }
 }
 ```
 
-This creates two files, `.tokens_client.json` and `.tokens_strava.json`.
+This creates two required files, `.tokens_client.json` and `.tokens_strava.json`.
 
-## How to use
-
-Here's an example that shows how to retrieve a user's recent activities.
-This is a wrapper around [Strava's api](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
-
-```python
-from strava_connector.connector import Connector
-c = Connector(".tokens_client.json",".tokens_strava.json")
-res = c.get_logged_in_athlete_activities(1,3)
-```
 
 ## Credits
 
