@@ -5,7 +5,10 @@ description = ""
 authors = ["Thomas Camminady <0milieux_member@icloud.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.9,<3.12"
+requests = "^2.31.0"
+fire = "^0.6.0"
+rich = "^13.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
