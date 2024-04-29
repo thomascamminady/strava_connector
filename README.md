@@ -76,6 +76,11 @@ http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
 
 This creates the two required files, `.tokens_client.json` and `.tokens_strava.json`.
 
+## AI warning
+
+I heavily used [Github's Copilot](https://github.com/features/copilot) as an advanced autocomplete
+for the creation of the `get_...` methods and for writing the `test_get_...` methods.
+
 ## Credits
 
 - Strava authentication tutorial by [Benji Knights Johnson](https://medium.com/swlh/using-python-to-connect-to-stravas-api-and-analyse-your-activities-dummies-guide-5f49727aac86)

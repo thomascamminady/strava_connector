@@ -1,3 +1,5 @@
+from typing import Literal, overload
+
 import requests
 
 from strava_connector.authenticator import Authenticator
@@ -22,12 +24,31 @@ class Connector:
         self.authenticator.update_token()
         return str(self.authenticator.strava_tokens["access_token"])
 
+    @overload
     def get_request(
         self,
         route: str,
         print_query: bool,
         params: dict,
-    ) -> dict:
+        to_json: Literal[True],
+    ) -> dict: ...
+
+    @overload
+    def get_request(
+        self,
+        route: str,
+        print_query: bool,
+        params: dict,
+        to_json: Literal[False],
+    ) -> requests.Response: ...
+
+    def get_request(
+        self,
+        route: str,
+        print_query: bool,
+        params: dict,
+        to_json: bool,
+    ) -> dict | requests.Response:
         """GET request against strava's API."""
         params["access_token"] = self.access_token
         params_str = "&".join(
@@ -37,7 +58,10 @@ class Connector:
         if print_query:
             print(url)
         result = requests.get(url, timeout=self.authenticator._timeout)
-        return result.json()
+        if to_json:
+            return result.json()
+        else:
+            return result
 
     def getActivityById(
         self,
@@ -55,6 +79,7 @@ class Connector:
             params={
                 "include_all_efforts": include_all_efforts,
             },
+            to_json=True,
         )
 
     def getCommentsByActivityId(
@@ -79,6 +104,7 @@ class Connector:
                 "page_size": page_size,
                 "after_cursor": after_cursor,
             },
+            to_json=True,
         )
 
     def getKudoersByActivityId(
@@ -99,6 +125,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getLapsByActivityId(
@@ -114,6 +141,7 @@ class Connector:
             route=f"activities/{id}/laps",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getLoggedInAthleteActivities(
@@ -133,6 +161,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getZonesByActivityId(
@@ -148,6 +177,7 @@ class Connector:
             route=f"activities/{id}/zones",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getLoggedInAthlete(
@@ -159,9 +189,7 @@ class Connector:
         https://developers.strava.com/docs/reference/#api-Athletes-getLoggedInAthlete
         """
         return self.get_request(
-            route="athlete",
-            print_query=print_query,
-            params={},
+            route="athlete", print_query=print_query, params={}, to_json=True
         )
 
     def getLoggedInAthleteZones(
@@ -176,6 +204,7 @@ class Connector:
             route="athlete/zones",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getStats(
@@ -191,6 +220,7 @@ class Connector:
             route=f"athletes/{id}/stats",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getClubActivitiesById(
@@ -211,6 +241,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getClubAdminsById(
@@ -231,6 +262,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getClubById(
@@ -246,6 +278,7 @@ class Connector:
             route=f"clubs/{id}",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getClubMembersById(
@@ -266,6 +299,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getLoggedInAthleteClubs(
@@ -285,6 +319,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getGearById(
@@ -297,16 +332,14 @@ class Connector:
         https://developers.strava.com/docs/reference/#api-Gears-getGearById
         """
         return self.get_request(
-            route=f"gear/{id}",
-            print_query=print_query,
-            params={},
+            route=f"gear/{id}", print_query=print_query, params={}, to_json=True
         )
 
     def getRouteAsGPX(
         self,
         id: int,
         print_query: bool = False,
-    ) -> dict:
+    ) -> requests.Response:
         """Export Route GPX.
 
         https://developers.strava.com/docs/reference/#api-Routes-getRouteAsGPX
@@ -315,13 +348,14 @@ class Connector:
             route=f"routes/{id}/export_gpx",
             print_query=print_query,
             params={},
+            to_json=False,
         )
 
     def getRouteAsTCX(
         self,
         id: int,
         print_query: bool = False,
-    ) -> dict:
+    ) -> requests.Response:
         """Export Route TCX.
 
         https://developers.strava.com/docs/reference/#api-Routes-getRouteAsTCX
@@ -330,6 +364,7 @@ class Connector:
             route=f"routes/{id}/export_tcx",
             print_query=print_query,
             params={},
+            to_json=False,
         )
 
     def getRouteById(
@@ -345,6 +380,7 @@ class Connector:
             route=f"routes/{id}",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getRoutesByAthleteId(
@@ -365,6 +401,7 @@ class Connector:
                 "page": page,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getEffortsBySegmentId(
@@ -388,6 +425,7 @@ class Connector:
                 "end_date_local": end_date_local,
                 "per_page": per_page,
             },
+            to_json=True,
         )
 
     def getSegmentEffortById(
@@ -403,6 +441,7 @@ class Connector:
             route=f"segment_efforts/{id}",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def exploreSegments(
@@ -426,6 +465,27 @@ class Connector:
                 "min_cat": min_cat,
                 "max_cat": max_cat,
             },
+            to_json=True,
+        )
+
+    def getLoggedInAthleteStarredSegments(
+        self,
+        page: int | None = None,
+        per_page: int | None = None,
+        print_query: bool = False,
+    ) -> dict:
+        """List Athlete Starred Segments.
+
+        https://developers.strava.com/docs/reference/#api-Segments-getLoggedInAthleteStarredSegments
+        """
+        return self.get_request(
+            route="segments/starred",
+            print_query=print_query,
+            params={
+                "page": page,
+                "per_page": per_page,
+            },
+            to_json=True,
         )
 
     def getRouteStreams(
@@ -441,6 +501,7 @@ class Connector:
             route=f"routes/{id}/streams",
             print_query=print_query,
             params={},
+            to_json=True,
         )
 
     def getSegmentEffortStreams(
@@ -461,6 +522,7 @@ class Connector:
                 "keys": keys,
                 "key_by_type": key_by_type,
             },
+            to_json=True,
         )
 
     def getSegmentStreams(
@@ -481,6 +543,7 @@ class Connector:
                 "keys": keys,
                 "key_by_type": key_by_type,
             },
+            to_json=True,
         )
 
     def getUploadById(
@@ -496,4 +559,5 @@ class Connector:
             route=f"uploads/{id}",
             print_query=print_query,
             params={"uploadId": uploadId},
+            to_json=True,
         )

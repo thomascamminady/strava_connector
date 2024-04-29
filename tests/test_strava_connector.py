@@ -9,14 +9,17 @@
 from typing import Any
 
 import pytest
+import requests
 
 from strava_connector.connector import Connector
 
 ACTIVITY_IDS = [11285761263]
-ATHLETE_IDS = []
-CLUB_IDS = []
-GEAR_IDS = []
-ROUTE_IDS = []
+ATHLETE_IDS = [14347664]
+CLUB_IDS = ["wahoo-fitness"]
+GEAR_IDS = [14215798]
+ROUTE_IDS = [3]
+SEGMENT_IDS = [34338227]
+EFFORT_IDS = []
 
 
 def get_connection() -> Connector:
@@ -138,14 +141,14 @@ def test_getGearById(gear_id) -> None:
 def test_getRouteAsGPXById(route_id) -> None:
     connection = get_connection()
     response = connection.getRouteAsGPX(route_id)
-    check_response(response)
+    assert isinstance(response, requests.Response)
 
 
 @pytest.mark.parametrize("route_id", ROUTE_IDS)
 def test_getRouteAsTCXById(route_id) -> None:
     connection = get_connection()
     response = connection.getRouteAsTCX(route_id)
-    check_response(response)
+    assert isinstance(response, requests.Response)
 
 
 @pytest.mark.parametrize("route_id", ROUTE_IDS)
@@ -159,4 +162,24 @@ def test_getRouteById(route_id) -> None:
 def test_getRoutesByAthleteId(athlete_id) -> None:
     connection = get_connection()
     response = connection.getRoutesByAthleteId(athlete_id)
+    check_response(response)
+
+
+@pytest.mark.parametrize("segment_id", SEGMENT_IDS)
+def test_getEffortsBySegmentId(segment_id) -> None:
+    connection = get_connection()
+    response = connection.getEffortsBySegmentId(segment_id)
+    check_response(response)
+
+
+@pytest.mark.parametrize("effort_id", EFFORT_IDS)
+def test_getSegmentEffortById(effort_id) -> None:
+    connection = get_connection()
+    response = connection.getEffortsBySegmentId(effort_id)
+    check_response(response)
+
+
+def test_getLoggedInAthleteStarredSegments() -> None:
+    connection = get_connection()
+    response = connection.getLoggedInAthleteStarredSegments()
     check_response(response)
