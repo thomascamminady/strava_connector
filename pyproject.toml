@@ -1,8 +1,10 @@
 [tool.poetry]
 name = "strava_connector"
 version = "0.2.0"
-description = ""
+description = "Simple Strava client written in Python"
 authors = ["Thomas Camminady <0milieux_member@icloud.com>"]
+readme = "README.md"
+
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
