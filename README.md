@@ -1,6 +1,6 @@
 # Strava Connector
 
-This is a simple Strava client written in Python. I found Strava's Python API to be difficult to use, so I wrote this wrapper that uses `requests` to expose all `GET` requests that are available in Strava's [API documentation](https://developers.strava.com/docs/reference/).
+This is a simple [Strava](https://www.strava.com) client written in Python. I found Strava's Python API to be difficult to use, so I wrote this wrapper that uses `requests` to expose all `GET` requests that are available in Strava's [API documentation](https://developers.strava.com/docs/reference/).
 
 You have to manually follow the tutorial listed below to retrieve a `client_id` and a `client_secret`. This has to be done only once. Afterwards, `strava_connector` exposes convenient wrappers.
 
@@ -21,7 +21,7 @@ poetry add strava_connector
 For the following example to work, you need to follow the _Authentication workflow_ below.
 
 Here's an example that shows how to retrieve a user's recent activities.
-This is a wrapper around [Strava's api](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
+This is a wrapper around [`getLoggedInAthleteActivities`](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
 
 ```python
 from strava_connector.connector import Connector
@@ -37,7 +37,7 @@ Run the following steps.
 
 You have to first execute the first step (Create your App/API Connection) presented in this [amazing tutorial by Benji Knights Johnson.](https://medium.com/swlh/using-python-to-connect-to-stravas-api-and-analyse-your-activities-dummies-guide-5f49727aac86)
 
-As a result, you need to receive your `client_id` and your `client_secret`.
+As a result, you will have received your `client_id` and your `client_secret`.
 
 ### Step 2
 
