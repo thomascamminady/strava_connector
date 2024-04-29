@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "strava_connector"
-version = "0.2.1"
+version = "0.2.2"
 description = "Simple Strava client written in Python"
 authors = ["Thomas Camminady <0milieux_member@icloud.com>"]
 readme = "README.md"
+homepage = "https://github.com/thomascamminady/strava_connector"
+repository = "https://github.com/thomascamminady/strava_connector"
+documentation = "https://camminady.dev/strava_connector/strava_connector/connector.html"
 
 
 [tool.poetry.dependencies]
