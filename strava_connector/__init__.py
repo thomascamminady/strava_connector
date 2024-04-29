@@ -1,14 +1,7 @@
 """.. include:: ../README.md."""
 
-__author__ = """Thomas Camminady"""
-__email__ = """0milieux_member@icloud.com"""
-__version__ = """0.1.0"""
-
 import json
 from urllib.parse import parse_qs, urlparse
-
-import fire
-from rich import print
 
 from strava_connector.authenticator import Authenticator
 
@@ -50,7 +43,3 @@ def initial_auth(
 
         with open(strava_token_path) as _:
             print(json.load(_))
-
-
-if __name__ == "__main__":
-    fire.Fire(component=initial_auth)

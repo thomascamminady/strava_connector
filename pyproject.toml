@@ -7,8 +7,6 @@ authors = ["Thomas Camminady <0milieux_member@icloud.com>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
 requests = "^2.31.0"
-fire = "^0.6.0"
-rich = "^13.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -20,7 +18,6 @@ pre-commit = "^3.7.0"
 ipykernel = "^6.29.4"
 pytest = "^8.1.1"
 pytest-cov = "^5.0.0"
-rich = "^13.7.1"
 regex = "^2023.12.25"
 pylint = "^3.1.0"
 
@@ -36,6 +33,9 @@ ignore = [
   "D104",
   "D401",
   "E501",
+  "N802", # Ignore camelCase errors
+  "S106", # Ignore possible password exposure
+  "N803", # Ignore camelCase errors
 ]
 line-length = 80
 select = [
