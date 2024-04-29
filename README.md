@@ -1,5 +1,7 @@
 # Strava Connector
 
+Simple Strava client written in Python
+
 ## Workflow
 
 Run the following steps.
