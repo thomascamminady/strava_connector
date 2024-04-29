@@ -1,6 +1,8 @@
 # Strava Connector
 
-Simple Strava client written in Python.
+This is a simple Strava client written in Python. I found Strava's Python API to be difficult to use, so I wrote this wrapper that uses `requests` to expose all `GET` requests that are available in Strava's [API documentation](https://developers.strava.com/docs/reference/).
+
+You have to manually follow the tutorial listed below to retrieve a `client_id` and a `client_secret`. This has to be done only once. Afterwards, `strava_connector` exposes convenient wrappers.
 
 ## Installation
 
@@ -16,6 +18,7 @@ poetry add strava_connector
 
 ## How to use
 
+For the following example to work, you need to follow the _Authentication workflow_ below.
 
 Here's an example that shows how to retrieve a user's recent activities.
 This is a wrapper around [Strava's api](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
@@ -23,9 +26,8 @@ This is a wrapper around [Strava's api](https://developers.strava.com/docs/refer
 ```python
 from strava_connector.connector import Connector
 connector = Connector(".tokens_client.json",".tokens_strava.json")
-res = connector.get_logged_in_athlete_activities(page=1, per_page=3)
+res = connector.getLoggedInAthleteActivities(page=1, per_page=3)
 ```
-For this to work, you need to follow the workflow below.
 
 ## Authentication workflow
 
@@ -35,11 +37,12 @@ Run the following steps.
 
 You have to first execute the first step (Create your App/API Connection) presented in this [amazing tutorial by Benji Knights Johnson.](https://medium.com/swlh/using-python-to-connect-to-stravas-api-and-analyse-your-activities-dummies-guide-5f49727aac86)
 
-As a result you need to know your `client_id` and your `client_secret`.
+As a result, you need to receive your `client_id` and your `client_secret`.
 
 ### Step 2
 
-We need to run an initial authentication. Run the following code interactively in a python shell and replace the fake `client_id` and `client_secret` with the ones obtained in the previous step.
+We need to run an initial authentication.
+Run the following code interactively in a python shell and replace the fake `client_id` and `client_secret` with the ones obtained in the previous step.
 
 ```python
 from strava_connector import initial_auth
@@ -71,8 +74,7 @@ http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
 }
 ```
 
-This creates two required files, `.tokens_client.json` and `.tokens_strava.json`.
-
+This creates the two required files, `.tokens_client.json` and `.tokens_strava.json`.
 
 ## Credits
 
