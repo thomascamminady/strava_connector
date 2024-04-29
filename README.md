@@ -56,9 +56,7 @@ http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
     'expires_in': 20187,
     'refresh_token': '7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb',
     'access_token': '6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxa',
-    'athlete': {
-        // redacted
-    }
+    'athlete': { // redacted }
 }
 ```
 
