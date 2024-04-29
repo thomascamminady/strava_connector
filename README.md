@@ -23,6 +23,11 @@ from strava_connector import initial_auth
 client_id = "8xxxxxxxxxx1"
 client_secret = "axxxxxxxxxxxxxxxxxxxxxxxxxc"
 initial_auth(client_id, client_secret)
+```
+
+This will prompt you to click on a link and the dialogue will look something like this:
+```shell
+
 Click on the following authentication url.
 You will be redirected and have to click 'Authorize'.
 This redirects to a domain that does not resolve.
