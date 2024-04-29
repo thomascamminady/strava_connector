@@ -10,7 +10,7 @@ Run the following steps.
 
 You have to first execute the first step (Create your App/API Connection) presented in this [amazing tutorial by Benji Knights Johnson.](https://medium.com/swlh/using-python-to-connect-to-stravas-api-and-analyse-your-activities-dummies-guide-5f49727aac86)
 
-As a result you need to know your `client_id` and your `client_secret`
+As a result you need to know your `client_id` and your `client_secret`.
 
 ### Step 2
 
@@ -28,7 +28,7 @@ This redirects to a domain that does not resolve.
 Click here.         # On MacOs, you can do option+left mouse on this link.
 
 Paste the full url in here.
-http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxxxxxxxx3&scope=read,activity:read_all,profile:read_all
+http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
 {'client_secret': 'axxxxxxxxxxxxxxxxxxxxxxxxxc', 'client_id': '8xxxxxxxxxx1'}
 {
     'token_type': 'Bearer',
