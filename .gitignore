@@ -161,3 +161,4 @@ cython_debug/
 .venv/
 logs/
 .tokens_*.json
+notebooks/
