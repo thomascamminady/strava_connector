@@ -7,13 +7,17 @@ Simple Strava client written in Python.
 ## Workflow
 
 Install via
+
 ```
 pip install strava_connector
 ```
-or 
+
+or
+
 ```
 poetry add strava_connector
 ```
+
 Now run the following steps.
 
 ### Step 1
@@ -34,6 +38,7 @@ initial_auth(client_id, client_secret)
 ```
 
 This will prompt you to click on a link and the dialogue will look something like this:
+
 ```shell
 
 Click on the following authentication url.
@@ -58,6 +63,17 @@ http://localhost/exchange_token?state=&code=2xxxxxxxxxxxxx // redacted
 ```
 
 This creates two files, `.tokens_client.json` and `.tokens_strava.json`.
+
+## How to use
+
+Here's an example that shows how to retrieve a user's recent activities.
+This is a wrapper around [Strava's api](https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities).
+
+```python
+from strava_connector.connector import Connector
+c = Connector(".tokens_client.json",".tokens_strava.json")
+res = c.get_logged_in_athlete_activities(1,3)
+```
 
 ## Credits
 
