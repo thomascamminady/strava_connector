@@ -2,11 +2,19 @@
 
 # Strava Connector
 
-Simple Strava client written in Python
+Simple Strava client written in Python.
 
 ## Workflow
 
-Run the following steps.
+Install via
+```
+pip install strava_connector
+```
+or 
+```
+poetry add strava_connector
+```
+Now run the following steps.
 
 ### Step 1
 
