@@ -39,7 +39,7 @@ initial_auth(client_id, client_secret)
 
 This will prompt you to click on a link and the dialogue will look something like this:
 
-```shell
+```txt
 
 Click on the following authentication url.
 You will be redirected and have to click 'Authorize'.
